@@ -19,10 +19,10 @@ int main(int argc, char* argv[]) {
   std::vector<int> start_index(world_size);
   std::vector<int> end_index(world_size);
   int current_start_index = 0;
-  for (int irank=0; irank < world_size; irank++) {
+  for (int irank = 0; irank < world_size; ++irank) {
     start_index[irank] = current_start_index;
     int nindices = N / world_size;
-    if ( irank < N % world_size ) nindices++;
+    if ( irank < N % world_size ) ++nindices;
     end_index[irank] = start_index[irank] + nindices;
     current_start_index = end_index[irank];
   }
@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
     average += my_vec[index] / N;
   }
 
-  std::cout << "Rank: " << my_rank << "   Average: " << average << std::endl;
+  std::cout << "Rank: " << my_rank << "   Average: " << average << '\n';
 
   MPI_Finalize();
   return 0;
