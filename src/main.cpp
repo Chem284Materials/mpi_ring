@@ -29,13 +29,13 @@ int main(int argc, char* argv[]) {
 
   // Initialize the portion of the array that is stored on this rank
   std::vector<double> my_vec(end_index[my_rank] - start_index[my_rank]); 
-  for (int index = 0; index < end_index[my_rank] - start_index[my_rank]; index++) {
+  for (int index = 0; index < end_index[my_rank] - start_index[my_rank]; ++index) {
     my_vec[index] = index + start_index[my_rank];
   }
 
   // Average the portion of the array stored on this rank
   double average = 0.0;
-  for (int index = 0; index < end_index[my_rank] - start_index[my_rank]; index++) {
+  for (int index = 0; index < end_index[my_rank] - start_index[my_rank]; ++index) {
     average += my_vec[index] / N;
   }
 
